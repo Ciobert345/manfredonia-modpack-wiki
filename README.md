@@ -2,7 +2,8 @@
 
 A comprehensive database and documentation system for the Manfredonia Minecraft modpack.
 
-![MNF Modpack Wiki](https://github.com/Ciobert345/manfredonia-modpack-wiki/assets/placeholder-banner.png)
+<img width="1843" height="980" alt="immagine" src="https://github.com/user-attachments/assets/03f3f5c8-d442-489b-af60-0ceb76fc9e43" />
+
 
 ## Features
 
