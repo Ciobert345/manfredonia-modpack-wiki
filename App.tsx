@@ -61,7 +61,7 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col md:flex-row text-white font-['Inter'] bg-transparent relative selection:bg-white selection:text-black">
       
       {/* DESKTOP SIDEBAR - EVOLVED HUD STYLE */}
-      <aside className="hidden md:flex flex-col w-[310px] shrink-0 h-screen sticky top-0 bg-black/60 backdrop-blur-3xl border-r border-white/10 z-[110] shadow-[inset_-20px_0_40px_rgba(0,0,0,0.4)]">
+      <aside className="hidden md:flex flex-col w-[310px] shrink-0 h-screen sticky top-0 bg-black/40 backdrop-blur-3xl border-r border-white/10 z-[110] shadow-[inset_-20px_0_40px_rgba(0,0,0,0.4)]">
         {/* LOGO AREA */}
         <div className="p-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-white/10" />
@@ -120,7 +120,7 @@ const App: React.FC = () => {
         </div>
 
         {/* BOTTOM UTILITY */}
-        <div className="p-8 border-t border-white/10 bg-black/40">
+        <div className="p-8 border-t border-white/10 bg-black/20">
            <button 
              onClick={() => setShowLibraries(!showLibraries)}
              className={`w-full flex items-center justify-between px-5 py-4 rounded-2xl border transition-all duration-500 ${
@@ -152,18 +152,18 @@ const App: React.FC = () => {
       {/* MAIN AREA */}
       <main className="flex-grow flex flex-col relative min-w-0">
         {/* HEADER - REMAINS LARGE & IMPACTFUL */}
-        <header className={`sticky top-0 z-[1000] transition-all duration-500 ${isScrolled || isMenuOpen ? 'bg-black/95 backdrop-blur-3xl border-b border-white/10 py-4 shadow-2xl' : 'bg-transparent py-6 md:py-12'}`}>
+        <header className={`sticky top-0 z-[1000] transition-all duration-500 ${isScrolled || isMenuOpen ? 'bg-black/40 backdrop-blur-3xl border-b border-white/10 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'bg-transparent py-6 md:py-12'}`}>
           <div className="px-6 md:px-12 flex items-center gap-5">
             
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center flex-shrink-0 active:scale-95 transition-all"
+              className={`md:hidden w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 active:scale-95 transition-all duration-300 ${isMenuOpen ? 'bg-white text-black rotate-90' : 'bg-white/5 border border-white/10 text-white'}`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
             
             <div className="relative flex-grow">
-              <div className={`flex items-center bg-black/40 backdrop-blur-md border rounded-2xl transition-all duration-500 ${searchTerm ? 'border-white/40 bg-black/60 shadow-[0_0_30px_rgba(255,255,255,0.05)]' : 'border-white/10'}`}>
+              <div className={`flex items-center backdrop-blur-md border rounded-2xl transition-all duration-500 ${searchTerm ? 'bg-black/40 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)]' : 'bg-black/20 border-white/10 hover:bg-black/40'}`}>
                 <div className="pl-5 text-white/20">
                   <Search size={18} />
                 </div>
@@ -177,47 +177,74 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <div className="md:hidden w-14 h-14 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-2xl">
+            <div className="md:hidden w-14 h-14 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-2xl overflow-hidden">
               <img src="/icon.png" alt="MNF" className="w-10 h-10 object-cover" />
             </div>
           </div>
-
-          {/* ULTRA-COMPACT MENU ITEMS (FOR MOBILE) */}
-          <div className={`md:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isMenuOpen ? 'max-h-[500px] opacity-100 border-t border-white/10 mt-4' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-             <div className="p-4 bg-black/90 backdrop-blur-3xl">
-                <div className="mono text-[8px] text-white/20 uppercase font-black tracking-[0.4em] mb-4 pl-1">Module_Registry</div>
-                <div className="grid grid-cols-4 gap-2">
-                  {CATEGORIES.map(cat => {
-                    const Icon = IconMapper[cat.icon] || Package;
-                    const isActive = selectedCategory === cat.id;
-                    return (
-                      <button
-                        key={cat.id}
-                        onClick={() => { setSelectedCategory(cat.id); setIsMenuOpen(false); }}
-                        className={`flex flex-col items-center justify-center gap-1.5 py-3 rounded-xl border transition-all ${isActive ? 'bg-white text-black border-white shadow-lg' : 'bg-white/5 border-white/5 text-white/30 active:bg-white/10'}`}
-                      >
-                        <Icon size={14} style={{ color: isActive ? 'black' : cat.color }} />
-                        <span className="mono text-[7px] font-black uppercase tracking-tighter truncate w-full text-center px-0.5">{cat.label.split('_')[0]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-                
-                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                   <button 
-                    onClick={() => { setShowLibraries(!showLibraries); setIsMenuOpen(false); }}
-                    className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border transition-all ${showLibraries ? 'bg-white/5 border-white/20 text-white' : 'border-white/5 text-white/20'}`}
-                  >
-                    {showLibraries ? <Eye size={14} /> : <EyeOff size={14} />}
-                    <span className="mono text-[9px] font-black uppercase">Libraries</span>
-                  </button>
-                  <div className="mono text-[8px] text-white/10 uppercase tracking-[0.3em]">
-                    {currentTime}
-                  </div>
-                </div>
-             </div>
-          </div>
         </header>
+
+        {/* MOBILE MENU OVERLAY - MOVED OUTSIDE HEADER FOR CORRECT STACKING */}
+        <div className={`md:hidden fixed inset-0 z-[999] bg-black/60 backdrop-blur-3xl transition-all duration-500 flex flex-col pt-28 px-4 pb-6 overflow-y-auto ${isMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+          
+          <div className="mono text-[9px] text-white/30 uppercase font-black tracking-[0.4em] mb-4 pl-1 border-b border-white/10 pb-2 flex justify-between items-end">
+            <span>System_Navigation</span>
+            <span className="text-[7px] opacity-50 tracking-normal">SEC_01</span>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2">
+            {CATEGORIES.map(cat => {
+              const Icon = IconMapper[cat.icon] || Package;
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => { setSelectedCategory(cat.id); setIsMenuOpen(false); }}
+                  className={`relative w-full flex items-center gap-3 px-3 py-3 rounded-xl border transition-all duration-300 group overflow-hidden ${
+                    isActive 
+                      ? 'bg-white text-black border-white shadow-[0_4px_20px_rgba(255,255,255,0.2)]' 
+                      : 'bg-white/5 border-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:border-white/20'
+                  }`}
+                >
+                  <div className={`p-1.5 rounded-lg transition-colors ${isActive ? 'bg-black/10' : 'bg-white/5 group-hover:bg-white/10'}`}>
+                    <Icon size={16} style={{ color: isActive ? 'black' : cat.color }} />
+                  </div>
+                  <div className="flex flex-col items-start text-left min-w-0 z-10">
+                    <span className="text-[12px] font-bold tracking-wider uppercase truncate w-full">{cat.label}</span>
+                  </div>
+                  
+                  {isActive && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-200 opacity-50" />
+                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-black animate-pulse flex-shrink-0 z-10" />
+                    </>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          
+          <div className="mt-auto pt-6 border-t border-white/10 space-y-3">
+              <button 
+              onClick={() => { setShowLibraries(!showLibraries); setIsMenuOpen(false); }}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 ${
+                showLibraries 
+                  ? 'bg-white/10 border-white/20 text-white shadow-inner backdrop-blur-md' 
+                  : 'bg-transparent border-white/5 text-white/30 hover:bg-white/5'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                {showLibraries ? <Eye size={16} /> : <EyeOff size={16} />}
+                <span className="mono text-[10px] font-black uppercase tracking-widest">Library_Modules</span>
+              </div>
+              <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${showLibraries ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-white/10'}`} />
+            </button>
+
+            <div className="flex justify-between items-center px-2 opacity-30">
+              <span className="mono text-[9px] uppercase tracking-widest">System_Time</span>
+              <span className="mono text-[9px] font-bold">{currentTime}</span>
+            </div>
+          </div>
+        </div>
 
         {/* CONTENT - LARGE AND BOLD */}
         <div className="p-6 md:p-12 lg:p-16 w-full mx-auto max-w-[1600px] relative z-10">
@@ -225,7 +252,7 @@ const App: React.FC = () => {
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
               <div className="relative">
                 <div className="mono text-[9px] md:text-[10px] text-white/20 tracking-[0.5em] uppercase mb-3 px-1">SECTOR_ACCESS_NODE: 0x41F_15E</div>
-                <h2 className="text-4xl md:text-9xl font-black uppercase tracking-tighter italic leading-none text-white drop-shadow-2xl selection:bg-white selection:text-black">
+                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter italic leading-none text-white drop-shadow-2xl selection:bg-white selection:text-black">
                   {currentCategory.label}
                 </h2>
                 <div className="mt-8 flex items-center gap-5">
@@ -258,7 +285,7 @@ const App: React.FC = () => {
           )}
         </div>
 
-        <footer className="mt-auto p-12 md:p-24 border-t border-white/10 bg-black/60 backdrop-blur-2xl">
+        <footer className="mt-auto p-12 md:p-24 border-t border-white/10 bg-black/40 backdrop-blur-2xl">
            <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
               <div className="flex items-center gap-6">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-inner group">

@@ -148,10 +148,10 @@ const ModCard: React.FC<ModCardProps> = ({ mod }) => {
           href={data.wiki} 
           target="_blank" 
           rel="noreferrer"
-          className="relative flex-grow flex items-center justify-center gap-2.5 mono text-[10px] font-black text-white/50 bg-white/[0.04] px-4 py-3.5 rounded-xl border border-white/5 shadow-xl active:scale-[0.97] flex-shrink-0 whitespace-nowrap min-h-[44px] transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:text-white hover:shadow-[0_5px_15px_rgba(255,255,255,0.1)]"
+          className="relative flex-grow flex items-center justify-center gap-2.5 mono text-[10px] font-black text-white/50 bg-white/[0.04] px-4 py-3.5 rounded-xl border border-white/5 shadow-xl active:scale-[0.97] flex-shrink-0 whitespace-nowrap min-h-[44px] transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] group/btn"
         >
           <span className="relative z-10">VIEW_WIKI_PROTOCOL</span>
-          <ArrowUpRight size={14} className="relative z-10 transition-transform duration-300 hover:translate-x-1 hover:-translate-y-1" />
+          <ArrowUpRight size={14} className="relative z-10 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
         </a>
       </div>
     </div>
