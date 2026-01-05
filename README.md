@@ -2,8 +2,7 @@
 
 A comprehensive database and documentation system for the Manfredonia Minecraft modpack.
 
-<img width="1843" height="980" alt="immagine" src="https://github.com/user-attachments/assets/03f3f5c8-d442-489b-af60-0ceb76fc9e43" />
-
+<img width="1840" height="974" alt="immagine" src="https://github.com/user-attachments/assets/62624106-5c53-434b-84ca-7f11464b5d2f" />
 
 ## Features
 
