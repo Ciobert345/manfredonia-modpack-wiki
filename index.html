@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNF // DATABASE_CORE</title>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="tech-bg">
+    <!-- Cyber HUD Architecture -->
+    <div class="grid-layer"></div>
+    <div class="scanner-line"></div>
+    <div class="ghost-circles"></div>
+    <div class="particles" id="particle-container"></div>
+    
+    <div class="vignette"></div>
+    <div class="noise-overlay"></div>
+    
+    <div id="root"></div>
+
+    <script>
+        const container = document.getElementById('particle-container');
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 15 + 20) + 's';
+            p.style.animationDelay = (Math.random() * -30) + 's';
+            container.appendChild(p);
+        }
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
